@@ -9,5 +9,6 @@ namespace HydacProject
     internal class Employee
     {
         public string Name;
+
     }
 }
