@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace HydacProject
 {
-    internal class Classes
+    internal class Employee
     {
-        //dette er en ny opdatering 2
+        public string Name;
     }
 }
