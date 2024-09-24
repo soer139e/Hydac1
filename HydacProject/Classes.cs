@@ -8,6 +8,6 @@ namespace HydacProject
 {
     internal class Classes
     {
-        //dette er en ny opdatering 1
+        //dette er en ny opdatering 2
     }
 }
