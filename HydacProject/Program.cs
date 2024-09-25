@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace HydacProject
 {
@@ -6,12 +7,15 @@ namespace HydacProject
     {
         static void Main(string[] args)
         {
+            Visitor visitor = new Visitor();
+            VisitorList list = new VisitorList();
             // Tjek om filstien eksistere til Hydac.txt
             // Hvis den ikke eksistere opret en fil og filsti til Hydac.txt
             // Hvis den eksistere, gå videre :)
 
             // While true
-            while (true)
+            bool inWhile = true;
+            while (inWhile == true)
             {
                 
                 // Switch
@@ -33,25 +37,36 @@ namespace HydacProject
 
                    {
                     case 1:
-                        {   
-                            Visitor visitor = new Visitor();
+                        {
+                            visitor = new Visitor();
+                            Console.Clear();
                             Console.WriteLine("Indtast hvilket firma du kommer fra:");
-                            // console.readline
+                            visitor.companyName = Console.ReadLine();
+
+                            Console.Clear();
                             Console.WriteLine("Indtast dit navn:");
-                            // console.readline
+                            visitor.personName = Console.ReadLine();
+
+                            Console.Clear();
                             Console.WriteLine("Har du fået udleveret sikkerheds brouchere? Y/N");
                             //if Y bool == true if N bool == false
-                            if (Console.ReadLine() == "Y" || Console.ReadLine()=="y")
+                            string choice = Console.ReadLine();
+                            if (choice == "Y" || choice=="y")
                             {
-                                
+                                visitor.safetyBrochurGiven = true;
                             }
-                            else if (Console.ReadLine() == "N" || Console.ReadLine() == "n")
+                            else if (choice == "N" || choice == "n")
                             {
-                                
+                                visitor.safetyBrochurGiven = false;
                             }
+
+                            
+                            Console.Clear();
                             Console.WriteLine("Hvem er din sikkerhedsansvarlig:");
-                            //Console.readline
-                            employee.Add
+                            visitor.responsableForVisitor = Console.ReadLine();
+
+                            // Add visitor to visitor's vistor list
+                           list.AddVisitor(visitor);
                             break;
                         }
                         case 2:
@@ -71,7 +86,7 @@ namespace HydacProject
                         break;
 
                         case 6:
-
+                        inWhile = false;
                         break;
 
                 }
@@ -82,10 +97,7 @@ namespace HydacProject
                 //søren laver 6
 
 
-                Console.WriteLine("Skriv besøgendes navn: ");
-                Console.ReadLine();
-                Console.WriteLine("Skriv besøgendes firma: ");
-                Console.ReadLine();
+                
 
                 // Tast 2 for at fjerne besøgende
 

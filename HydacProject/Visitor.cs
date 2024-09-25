@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace HydacProject
 {
-    internal class Visitor
+    public class Visitor
     {
         public string companyName;
         public string personName;
         public bool safetyBrochurGiven;
         public string responsableForVisitor;
-        public List<Visitor> visitors = new List<Visitor> { };
 
         // Default Constructor
         public Visitor()
@@ -27,6 +26,12 @@ namespace HydacProject
             this.safetyBrochurGiven = safetyBrochurGiven;
             this.responsableForVisitor = responsableForVisitor;
         }
+ 
+    }
+    public class VisitorList
+    {
+        public List<Visitor> visitors = new List<Visitor> { };
+
         public List<Visitor> AddVisitor(Visitor visitor)
         {
             visitors.Add(visitor);
