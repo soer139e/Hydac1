@@ -18,10 +18,10 @@ namespace HydacProject
             while (inWhile == true)
             {
                 
-                // Switch
+
                 
 
-                // Menuvalg
+               
                 Console.WriteLine("Velkommen til Hydac komme/gå system\n");
 
                 Console.WriteLine("Vælg/tast én af nedestående valgmuligheder: \n");
@@ -94,24 +94,6 @@ namespace HydacProject
                 // tobiTheHobi laver 1 
                 //Musy laver 2
                 //Emil Laver 3
-                //søren laver 6
-
-
-                
-
-                // Tast 2 for at fjerne besøgende
-
-
-                // Tast 3 for at se alle aktuelle besøgende
-
-
-                // Tast 4 for at redigere besøgende
-
-
-                // Tast 5 for historik over besøgende
-
-
-                // Tast 6 for at lukke programmet
             }
         }
     }
