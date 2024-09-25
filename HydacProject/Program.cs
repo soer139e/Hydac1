@@ -34,7 +34,7 @@ namespace HydacProject
                    {
                     case 1:
                         {   
-
+                            Visitor visitor = new Visitor();
                             Console.WriteLine("Indtast hvilket firma du kommer fra:");
                             // console.readline
                             Console.WriteLine("Indtast dit navn:");
@@ -45,12 +45,13 @@ namespace HydacProject
                             {
                                 
                             }
-                            if else (Console.ReadLine() == "N" || Console.ReadLine() == "n")
+                            else if (Console.ReadLine() == "N" || Console.ReadLine() == "n")
                             {
                                 
                             }
                             Console.WriteLine("Hvem er din sikkerhedsansvarlig:");
                             //Console.readline
+                            employee.Add
                             break;
                         }
                         case 2:

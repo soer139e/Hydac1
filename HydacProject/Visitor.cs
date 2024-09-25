@@ -13,6 +13,13 @@ namespace HydacProject
         public bool safetyBrochurGiven;
         public string responsableForVisitor;
         public List<Visitor> visitors = new List<Visitor> { };
+
+        // Default Constructor
+        public Visitor()
+        {
+
+        }
+        //Visitor Constructor
         public Visitor(string companyName,string personName,bool safetyBrochurGiven,string responsableForVisitor) 
         {
             this.companyName = companyName;
