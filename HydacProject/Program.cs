@@ -7,6 +7,14 @@ namespace HydacProject
     {
         static void Main(string[] args)
         {
+            string filePath = "";
+            if (File.Exists(filePath) != true)
+            {
+                Console.WriteLine("Created Storage file");
+                File.Create(filePath);
+            }
+
+
             Visitor visitor = new Visitor();
             VisitorList list = new VisitorList();
             // Tjek om filstien eksistere til Hydac.txt

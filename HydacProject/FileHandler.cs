@@ -8,5 +8,20 @@ namespace HydacProject
 {
     class FileHandler
     {
+        static void SaveToFile(List<Visitor> VisitorList, string filePath)
+        {
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                foreach (var Visitor in VisitorList)
+                {
+                    // Write the properties separated by a comma
+                    writer.WriteLine($"{Visitor.companyName},{Visitor.personName},{Visitor.safetyBrochurGiven},{Visitor.responsableForVisitor}");
+                }
+            }
+        }
+        public void ReadFromFile()
+        {
+            
+        }
     }
 }
