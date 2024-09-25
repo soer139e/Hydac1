@@ -8,7 +8,8 @@ namespace HydacProject
 {
     internal class Employee
     {
-        public string Name;
+        public string personName;
+        public string placeholder;
 
     }
 }

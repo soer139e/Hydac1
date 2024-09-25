@@ -6,23 +6,24 @@ using System.Threading.Tasks;
 
 namespace HydacProject
 {
-    internal class Visoter
+    internal class Visitor
     {
         public string companyName;
         public string personName;
         public bool safetyBrochurGiven;
         public string responsableForVisitor;
-
-        public Visoter(string companyName,string personName,bool safetyBrochurGiven,string responsableForVisitor) 
-        { 
+        public List<Visitor> visitors = new List<Visitor> { };
+        public Visitor(string companyName,string personName,bool safetyBrochurGiven,string responsableForVisitor) 
+        {
             this.companyName = companyName;
             this.personName = personName;
             this.safetyBrochurGiven = safetyBrochurGiven;
             this.responsableForVisitor = responsableForVisitor;
         }
-        public Visitor[] addVisitor()
+        public List<Visitor> AddVisitor(Visitor visitor)
         {
-
+            visitors.Add(visitor);
+            return visitors;
         }
     }
 }

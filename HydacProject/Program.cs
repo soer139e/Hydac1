@@ -33,9 +33,24 @@ namespace HydacProject
 
                    {
                     case 1:
-                        {
+                        {   
 
-
+                            Console.WriteLine("Indtast hvilket firma du kommer fra:");
+                            // console.readline
+                            Console.WriteLine("Indtast dit navn:");
+                            // console.readline
+                            Console.WriteLine("Har du fået udleveret sikkerheds brouchere? Y/N");
+                            //if Y bool == true if N bool == false
+                            if (Console.ReadLine() == "Y" || Console.ReadLine()=="y")
+                            {
+                                
+                            }
+                            if else (Console.ReadLine() == "N" || Console.ReadLine() == "n")
+                            {
+                                
+                            }
+                            Console.WriteLine("Hvem er din sikkerhedsansvarlig:");
+                            //Console.readline
                             break;
                         }
                         case 2:
