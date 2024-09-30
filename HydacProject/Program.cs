@@ -7,10 +7,10 @@ namespace HydacProject
     {
         static void Main(string[] args)
         {
-            WhileLoob3();
+            StartMenu();
         }
 
-        static void WhileLoob3()
+        static void StartMenu()
         {
 
             // Tjek om filstien eksistere til Hydac.txt
@@ -38,7 +38,7 @@ namespace HydacProject
                     switch (input)
                     {
                         case "1":
-                            WhileLoob2();
+                            KundeMenu();
 
                             break;
 
@@ -47,7 +47,7 @@ namespace HydacProject
                             int password = Convert.ToInt32(Console.ReadLine());
                             if (password == pass)
                             {
-                                WhileLoob1();
+                                PersonaleMenu();
 
                             }
 
@@ -80,7 +80,7 @@ namespace HydacProject
 
 
         }
-        static void WhileLoob1()
+        static void PersonaleMenu()
 
 
 
@@ -167,7 +167,7 @@ namespace HydacProject
                         break;
 
                     case 6:
-                        WhileLoob3();
+                        StartMenu();
                         break;
 
                 }
@@ -195,7 +195,7 @@ namespace HydacProject
                 // Tast 6 for at lukke programmet
             }
         }
-        static void WhileLoob2()
+        static void KundeMenu()
         {
             Visitor visitor = new Visitor();
             VisitorList list = new VisitorList();
@@ -255,7 +255,7 @@ namespace HydacProject
                     case 2:
                         {
 
-                            WhileLoob3();
+                            StartMenu();
 
                             break;
                         }
