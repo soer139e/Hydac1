@@ -13,7 +13,7 @@ namespace HydacProject
         public bool safetyBrochurGiven;
         public string responsableForVisitor;
 
-        // Default Constructor
+        // Default Constructor sej sej sej
         public Visitor()
         {
 
