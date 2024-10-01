@@ -25,6 +25,7 @@ namespace HydacProject
             this.personName = personName;
             this.safetyBrochurGiven = safetyBrochurGiven;
             this.responsableForVisitor = responsableForVisitor;
+            
         }
  
     }

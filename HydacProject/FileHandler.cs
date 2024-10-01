@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace HydacProject
 {
     class FileHandler
@@ -19,9 +20,19 @@ namespace HydacProject
                 }
             }
         }
-        public void ReadFromFile()
+        public void ReadFromFile(string filepath)
         {
-            
+            string line;
+            using (StreamWriter reader = new StreamWriter(filepath))
+            {
+                line = reader.;
+                while(line != null)
+                {
+                    line =
+                }
+            }
+
+
         }
     }
 }
