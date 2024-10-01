@@ -7,7 +7,7 @@ namespace HydacProject
     {
         static void Main(string[] args)
         {
-            string filePath = "";
+            string filePath = "C:/Users/spilp/Documents/Datamatiker/Visual studio programmer/Projekter/Det rigtige Hydac projekt/Hydac/Visitors.txt";
             if (File.Exists(filePath) != true)
             {
                 Console.WriteLine("Created Storage file");
@@ -75,6 +75,7 @@ namespace HydacProject
 
                             // Add visitor to visitor's vistor list
                            list.AddVisitor(visitor);
+                            FileHandler.SaveVisitorToFile(list, filePath);
                             break;
                         }
                         case 2:
@@ -98,10 +99,7 @@ namespace HydacProject
                         break;
 
                 }
-                // Tast 1 for at tilføje besøgende
-                // tobiTheHobi laver 1 
-                //Musy laver 2
-                //Emil Laver 3
+                
             }
         }
     }

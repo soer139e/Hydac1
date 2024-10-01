@@ -7,28 +7,46 @@ using System.Threading.Tasks;
 
 namespace HydacProject
 {
-    class FileHandler
+    public class FileHandler
     {
-        static void SaveToFile(List<Visitor> VisitorList, string filePath)
+        // Creates new Visitor
+        Visitor visitor = new Visitor();
+
+        //SaveVisitorToFile saves the Visitor list to a .txt file
+        //It accepts a Visitorlist and a filePath
+        public static void SaveVisitorToFile(VisitorList visitorList, string filePath)
         {
-            using (StreamWriter writer = new StreamWriter(filePath))
+            //Gets StreamWriter library and creates a instances of it that will write to the specified .txt file 
+            using (StreamWriter writer = new StreamWriter(filePath,true))
             {
-                foreach (var Visitor in VisitorList)
+            //Loops through the VisitorList
+                foreach (var Visitor in visitorList.visitors)
                 {
-                    // Write the properties separated by a comma
+                    // Writes the properties in Visitor separated by a comma
                     writer.WriteLine($"{Visitor.companyName},{Visitor.personName},{Visitor.safetyBrochurGiven},{Visitor.responsableForVisitor}");
                 }
             }
         }
-        public void ReadFromFile(string filepath)
+        //ReadVisitorFromFile will read a .txt file and add all instances of Visitors to the VisitorList
+        public void ReadVisitorFromFile(string filepath)
         {
+            string[] lineSplit;
             string line;
-            using (StreamWriter reader = new StreamWriter(filepath))
+            // Uses the StreamReader library and creates an instances of StreamReader that will read the specified .txt file
+            using (StreamReader reader = new StreamReader(filepath))
             {
-                line = reader.;
+                //Checks if the file is empty
+                line = reader.ReadLine();
+                //Loops through the .txt file until all is read
                 while(line != null)
                 {
-                    line =
+                    lineSplit = line.Split(new char[] { ',' });
+                    visitor.companyName = lineSplit[0];
+                    visitor.personName = lineSplit[1];
+                    visitor.safetyBrochurGiven = Convert.ToBoolean(lineSplit[2]);
+                    visitor.responsableForVisitor = lineSplit[3];
+
+                    line = reader.ReadLine();
                 }
             }
 

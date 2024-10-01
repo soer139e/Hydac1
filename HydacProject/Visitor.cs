@@ -13,7 +13,7 @@ namespace HydacProject
         public bool safetyBrochurGiven;
         public string responsableForVisitor;
 
-        // Default Constructor sej sej sej
+        // Default Constructor
         public Visitor()
         {
 
@@ -32,6 +32,7 @@ namespace HydacProject
     public class VisitorList
     {
         public List<Visitor> visitors = new List<Visitor> { };
+        public int visitorCount = 0;
 
         public List<Visitor> AddVisitor(Visitor visitor)
         {
