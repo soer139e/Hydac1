@@ -37,6 +37,7 @@ namespace HydacProject
         public List<Visitor> AddVisitor(Visitor visitor)
         {
             visitors.Add(visitor);
+            visitorCount++;
             return visitors;
         }
     }

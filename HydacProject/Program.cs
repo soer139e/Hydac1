@@ -7,7 +7,7 @@ namespace HydacProject
     {
         static void Main(string[] args)
         {
-            string filePath = "C:/Users/spilp/Documents/Datamatiker/Visual studio programmer/Projekter/Det rigtige Hydac projekt/Hydac/Visitors.txt";
+            string filePath = "Visitors.txt";
             if (File.Exists(filePath) != true)
             {
                 Console.WriteLine("Created Storage file");

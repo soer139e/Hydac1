@@ -19,12 +19,12 @@ namespace HydacProject
             //Gets StreamWriter library and creates a instances of it that will write to the specified .txt file 
             using (StreamWriter writer = new StreamWriter(filePath,true))
             {
-            //Loops through the VisitorList
+            
                 foreach (var Visitor in visitorList.visitors)
                 {
                     // Writes the properties in Visitor separated by a comma
-                    writer.WriteLine($"{Visitor.companyName},{Visitor.personName},{Visitor.safetyBrochurGiven},{Visitor.responsableForVisitor}");
-                }
+                    writer.WriteLine($"{Visitor.companyName} ,{Visitor.personName},{Visitor.safetyBrochurGiven},{Visitor.responsableForVisitor}");
+                
             }
         }
         //ReadVisitorFromFile will read a .txt file and add all instances of Visitors to the VisitorList
