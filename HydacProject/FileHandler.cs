@@ -14,17 +14,18 @@ namespace HydacProject
 
         //SaveVisitorToFile saves the Visitor list to a .txt file
         //It accepts a Visitorlist and a filePath
-        public static void SaveVisitorToFile(VisitorList visitorList, string filePath)
+        public static void SaveVisitorToFile(Visitor visitor, string filePath)
         {
             //Gets StreamWriter library and creates a instances of it that will write to the specified .txt file 
-            using (StreamWriter writer = new StreamWriter(filePath,true))
+            using (StreamWriter writer = new StreamWriter(filePath, true))
             {
-            
-                foreach (var Visitor in visitorList.visitors)
-                {
-                    // Writes the properties in Visitor separated by a comma
-                    writer.WriteLine($"{Visitor.companyName} ,{Visitor.personName},{Visitor.safetyBrochurGiven},{Visitor.responsableForVisitor}");
+
                 
+                    // Writes the properties in Visitor separated by a comma
+                    writer.WriteLine($"{visitor.companyName} ,{visitor.personName},{visitor.safetyBrochurGiven},{Visitor.responsableForVisitor}");
+
+                
+
             }
         }
         //ReadVisitorFromFile will read a .txt file and add all instances of Visitors to the VisitorList
