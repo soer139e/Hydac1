@@ -32,6 +32,7 @@ namespace HydacProject
     public class VisitorList
     {
         public List<Visitor> visitors = new List<Visitor> { };
+
         public int visitorCount = 0;
 
         public List<Visitor> AddVisitor(Visitor visitor)
@@ -39,6 +40,27 @@ namespace HydacProject
             visitors.Add(visitor);
             visitorCount++;
             return visitors;
+            
         }
+
+        public List<Visitor> RemoveVisitor(Visitor visitor)
+        {
+            visitors.Remove(visitor);
+            return visitors;
+        }
+
+        public List<Visitor> PrintVisitor(Visitor visitor)
+        {
+            foreach (Visitor visitor2 in visitors)
+            {
+                Console.WriteLine(visitor2);
+                
+            }
+            return visitors;
+        }
+
+
+
     }
+    
 }

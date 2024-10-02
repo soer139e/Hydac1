@@ -7,6 +7,7 @@ namespace HydacProject
     {
         static void Main(string[] args)
         {
+
             string filePath = "Visitors.txt";
             if (File.Exists(filePath) != true)
             {
@@ -53,54 +54,16 @@ namespace HydacProject
 
                             Console.Clear();
                             Console.WriteLine("Indtast dit navn:");
-                            visitor.personName = Console.ReadLine();
 
-                            Console.Clear();
-                            Console.WriteLine("Har du fået udleveret sikkerheds brouchere? Y/N");
-                            //if Y bool == true if N bool == false
-                            string choice = Console.ReadLine();
-                            if (choice == "Y" || choice=="y")
-                            {
-                                visitor.safetyBrochurGiven = true;
-                            }
-                            else if (choice == "N" || choice == "n")
-                            {
-                                visitor.safetyBrochurGiven = false;
-                            }
-
-                            
-                            Console.Clear();
-                            Console.WriteLine("Hvem er din sikkerhedsansvarlig:");
-                            visitor.responsableForVisitor = Console.ReadLine();
-
-                            // Add visitor to visitor's vistor list
-                           list.AddVisitor(visitor);
-                            FileHandler.SaveVisitorToFile(list, filePath);
-                            break;
-                        }
-                        case 2:
-                        {
-                            break;
-                        }
-                        case 3:
-
-                        break;
-
-                        case 4:
-
-                        break;
-
-                        case 5:
-
-                        break;
-
-                        case 6:
-                        inWhile = false;
-                        break;
-
-                }
                 
             }
         }
+
+            //Moved menu to Menu.cs
+            //Moved login/password til delvis Menu.cs og LoginHandler
+            Menu.StartMenu();
+            
+        } 
+            
     }
 }
