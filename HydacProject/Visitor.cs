@@ -32,10 +32,13 @@ namespace HydacProject
     public class VisitorList
     {
         public List<Visitor> visitors = new List<Visitor> { };
-        
+
+        public int visitorCount = 0;
+
         public List<Visitor> AddVisitor(Visitor visitor)
         {
             visitors.Add(visitor);
+            visitorCount++;
             return visitors;
             
         }

@@ -1,0 +1,5 @@
+
+gregr,greg,False,gra<gr
+jo,yu,True,tu
+jo,yu,True,tu
+hy,de,False,fem
