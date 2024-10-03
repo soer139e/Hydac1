@@ -21,19 +21,21 @@ namespace HydacProject
             {
 
 
+
                 // Writes the properties in Visitor separated by a comma
-               
+
                 writer.WriteLine($"{visitorList.visitors[visitorList.visitorCount].companyName}," +
                     $"{visitorList.visitors[visitorList.visitorCount].personName}," +
                     $"{visitorList.visitors[visitorList.visitorCount].safetyBrochurGiven}," +
                     $"{visitorList.visitors[visitorList.visitorCount].responsableForVisitor}");
 
-                
+
 
             }
         }
         //ReadVisitorFromFile will read a .txt file and add all instances of Visitors to the VisitorList
-        public void ReadVisitorFromFile(VisitorList visitorlist,string filepath)
+
+        public void ReadVisitorFromFile(VisitorList visitorlist, string filepath)
         {
             string[] lineSplit;
             string line;
@@ -43,7 +45,7 @@ namespace HydacProject
                 //Checks if the file is empty
                 line = reader.ReadLine();
                 //Loops through the .txt file until all is read
-                while(line != null)
+                while (line != null)
                 {
                     // Gets the current line and splits it at every ',' turning it into a string array
                     lineSplit = line.Split(new char[] { ',' });
