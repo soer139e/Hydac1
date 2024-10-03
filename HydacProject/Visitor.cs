@@ -39,6 +39,7 @@ namespace HydacProject
 
         public List<Visitor> AddVisitor(Visitor visitor)
         {
+            visitor.timeOfArrival = DateTime.Now;
             visitors.Add(visitor);
             visitorCount++;
             return visitors;

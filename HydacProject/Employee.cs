@@ -6,18 +6,27 @@ using System.Threading.Tasks;
 
 namespace HydacProject
 {
-    internal class Employee
+    public class Employee
     {
         public string personName;
         public DateTime DateOfArrival;
         public MoodSmiley moodSmiley;
         public DateTime DateOfDeparture;
-
-        public Employee(DateTime DateOfArrival, DateTime DateOfDeparture)
+        public string password;
+        
+        //No Arg Consturctor
+        public Employee() { }  
+        public Employee(string personName,MoodSmiley mood)
         {
-            this.DateOfDeparture = DateOfDeparture;
-            this.DateOfArrival = DateOfArrival;
+            this.DateOfDeparture = DateTime.Now;
+            this.personName = personName;
+            this.moodSmiley = mood;
         }
+    }
+    public class EmployeeList
+    {
+        public List<Employee> employees;
+        public int employeeCount;
     }
     public class MoodSmiley
     {

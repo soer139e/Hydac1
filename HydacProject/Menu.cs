@@ -9,7 +9,7 @@ namespace HydacProject
 {
     internal class Menu
     {
-
+        public string filePath = "Visitors.txt";
         public static void StartMenu() {
             bool inWhile = true;
 
@@ -180,43 +180,20 @@ namespace HydacProject
                         break;
 
                 }
-                // Tast 1 for at tilføje besøgende
-                // tobiTheHobi laver 1 
-                //Musy laver 2
-                //Emil Laver 3
-                //søren laver 6
 
-
-
-
-                // Tast 2 for at fjerne besøgende
-
-
-                // Tast 3 for at se alle aktuelle besøgende
-
-
-                // Tast 4 for at redigere besøgende
-
-
-                // Tast 5 for historik over besøgende
-
-
-                // Tast 6 for at lukke programmet
             }
             }
 
         static void KundeMenu() {
+            FileHandler handler = new FileHandler();
             Visitor visitor = new Visitor();
             VisitorList list = new VisitorList();
+            string filePath = "Visitors.txt";
             bool inWhile2 = true;
             while (inWhile2 == true)
-
             {
 
-                // Switch
 
-
-                // Menuvalg
                 Console.WriteLine("Velkommen til Hydac komme/gå system\n");
 
                 Console.WriteLine("Vælg/tast én af nedestående valgmuligheder: \n");
@@ -258,6 +235,7 @@ namespace HydacProject
 
                             // Add visitor to visitor's vistor list
                             list.AddVisitor(visitor);
+                            handler.SaveVisitorToFile(list, filePath);
                             break;
                         }
 

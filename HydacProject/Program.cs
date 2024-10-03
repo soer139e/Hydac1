@@ -3,19 +3,21 @@ using System.Threading.Tasks;
 
 namespace HydacProject
 {
+    
     internal class Program
     {
+       public static string filePath = "Visitors.txt";
         static void Main(string[] args)
         {
 
-            string filePath = "Visitors.txt";
+            
             if (File.Exists(filePath) != true)
             {
                 Console.WriteLine("Created Storage file");
                 File.Create(filePath);
             }
 
-
+            FileHandler handler = new FileHandler();
             Visitor visitor = new Visitor();
             VisitorList list = new VisitorList();
             // Tjek om filstien eksistere til Hydac.txt
@@ -26,8 +28,8 @@ namespace HydacProject
 
                 Menu.StartMenu();
 
-            }
+     }
 
-        }
     }
 }
+ 
