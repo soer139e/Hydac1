@@ -11,6 +11,7 @@ namespace HydacProject
     {
 
         public static void StartMenu() {
+            bool inWhile = true;
 
             // Tjek om filstien eksistere til Hydac.txt
             // Hvis den ikke eksistere opret en fil og filsti til Hydac.txt
@@ -19,7 +20,7 @@ namespace HydacProject
             // While true
 
 
-            {
+            
                 Console.Clear();
                 Console.WriteLine(" Tryk 1 hvis du er kunde\n");
 
@@ -27,20 +28,15 @@ namespace HydacProject
 
                 Console.WriteLine(" Tryk 3 for at luk programmet");
 
-                string input = Console.ReadLine();
-                Console.Clear();
-
-                bool inWhile = true;
                 //Sets Password and Username to Null to initialize the variable
                 String username = null;
                 String password = null;
-                while (inWhile)
+                while (inWhile == true)
                 {
-                    switch (input)
+                    switch (Console.ReadLine())
                     {
                         case "1":
                             KundeMenu();
-
                             break;
 
                         case "2":
@@ -70,16 +66,16 @@ namespace HydacProject
                             break;
 
                         case "3":
-
-                            Console.WriteLine("Lukker programmet");
+                            Console.WriteLine("Lukker Programmet");
                             inWhile = false;
+                            System.Environment.Exit(0);
                             break;
 
 
 
                         default:
 
-                            Console.WriteLine("fejl, tryk 1 eller 2\n");
+                         Console.WriteLine("fejl, tryk 1 eller 2");
 
 
 
@@ -88,7 +84,7 @@ namespace HydacProject
 
                     }
 
-                }
+                
 
             }
 
@@ -107,6 +103,7 @@ namespace HydacProject
 
 
                 // Menuvalg
+                Console.Clear();
                 Console.WriteLine("Velkommen til Hydac komme/gå system\n");
 
                 Console.WriteLine("Vælg/tast én af nedestående valgmuligheder: \n");
@@ -178,6 +175,7 @@ namespace HydacProject
                         break;
 
                     case 6:
+                        inWhile = false;
                         StartMenu();
                         break;
 
@@ -205,13 +203,14 @@ namespace HydacProject
 
                 // Tast 6 for at lukke programmet
             }
-        }
+            }
 
         static void KundeMenu() {
             Visitor visitor = new Visitor();
             VisitorList list = new VisitorList();
-            bool inWhile = true;
-            while (inWhile == true)
+            bool inWhile2 = true;
+            while (inWhile2 == true)
+
             {
 
                 // Switch
@@ -265,9 +264,8 @@ namespace HydacProject
 
                     case 2:
                         {
-
+                            inWhile2 = false;
                             StartMenu();
-
                             break;
                         }
 
@@ -275,7 +273,8 @@ namespace HydacProject
 
 
                 }
-            }
+            } 
+            
         }
     }
 }

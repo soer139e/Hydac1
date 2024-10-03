@@ -22,7 +22,7 @@ namespace HydacProject
 
                 
                     // Writes the properties in Visitor separated by a comma
-                    writer.WriteLine($"{visitor.companyName} ,{visitor.personName},{visitor.safetyBrochurGiven},{Visitor.responsableForVisitor}");
+                    writer.WriteLine($"{visitor.companyName} ,{visitor.personName},{visitor.safetyBrochurGiven},{visitor.responsableForVisitor}");
 
                 
 
