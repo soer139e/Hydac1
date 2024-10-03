@@ -12,6 +12,8 @@ namespace HydacProject
         public string personName;
         public bool safetyBrochurGiven;
         public string responsableForVisitor;
+        public DateTime timeOfArrival;
+        public DateTime timeOfDeparture;
 
         // Default Constructor
         public Visitor()

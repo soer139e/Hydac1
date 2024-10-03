@@ -21,6 +21,7 @@ namespace HydacProject
             {
 
 
+
                 // Writes the properties in Visitor separated by a comma
 
                 writer.WriteLine($"{visitorList.visitors[visitorList.visitorCount].companyName}," +
@@ -33,6 +34,7 @@ namespace HydacProject
             }
         }
         //ReadVisitorFromFile will read a .txt file and add all instances of Visitors to the VisitorList
+
         public void ReadVisitorFromFile(VisitorList visitorlist, string filepath)
         {
             string[] lineSplit;

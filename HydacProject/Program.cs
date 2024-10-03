@@ -23,14 +23,11 @@ namespace HydacProject
             // Hvis den eksistere, gå videre :)
 
             // While true
-            
-        
 
-            //Moved menu to Menu.cs
-            //Moved login/password til delvis Menu.cs og LoginHandler
-            Menu.StartMenu();
-            
-        } 
-            
+                Menu.StartMenu();
+
+            }
+
+        }
     }
 }
