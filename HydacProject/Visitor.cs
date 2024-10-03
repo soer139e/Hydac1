@@ -40,12 +40,14 @@ namespace HydacProject
         public List<Visitor> AddVisitor(Visitor visitor)
         {
             visitor.timeOfArrival = DateTime.Now;
-            visitors.Add(visitor);
-            visitorCount++;
+            visitors.Add(visitor); 
             return visitors;
-            
-        }
 
+        }
+        public void IncrementVisitorCount()
+        {
+            visitorCount++;
+        }
         public List<Visitor> RemoveVisitor(Visitor visitor)
         {
             visitors.Remove(visitor);

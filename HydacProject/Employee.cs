@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,17 +18,35 @@ namespace HydacProject
         //No Arg Consturctor
         public Employee() { }  
 
-        public Employee(string personName,MoodSmiley mood)
+        public Employee(string personName,MoodSmiley mood, string password)
         {
             this.DateOfDeparture = DateTime.Now;
             this.personName = personName;
             this.moodSmiley = mood;
+            this.password = password;
         }
     }
     public class EmployeeList
     {
-        public List<Employee> employees;
-        public int employeeCount;
+        public List<Employee> employees = new List<Employee> { };
+        public int employeeCount = 0;
+
+        public List<Employee> AddEmployee(Employee employee)
+        {
+            employees.Add(employee);
+            return employees;
+
+        }
+        public List<Employee> RemoveEmployee(Employee employee)
+        {
+            employees.Remove(employee);
+            return employees;
+
+        }
+        public void IncrementEmployeeCount()
+        {
+            employeeCount++;
+        }
     }
     public class MoodSmiley
     {
@@ -39,5 +58,8 @@ namespace HydacProject
             this.smileyStatusGiven = smileyStatusGiven;
             this.smileyStatus = smileyStatus;
         }
+
+        
+        
     }
 }

@@ -17,10 +17,12 @@ namespace HydacProject
             password = employee.password;
         }
         public String getUsername() { 
+
             return username;
         }
-        public String getPassword() { 
+        public String getPassword() {
             return password;
+            
         }
        // Use FileHandler to compare username/password from employees to the entred values
     }

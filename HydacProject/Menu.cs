@@ -9,8 +9,8 @@ namespace HydacProject
 {
     internal class Menu
     {
-        public string filePathVisitor = "Visitors.txt";
-        public string filePathEmployee = "Employee.txt";
+        public static string filePathVisitor = "Visitors.txt";
+        public static string filePathEmployee = "Employee.txt";
 
         public static void StartMenu() {
             bool inWhile = true;
@@ -48,11 +48,12 @@ namespace HydacProject
                             String entredUsername = Console.ReadLine();
                             Console.WriteLine("Skriv password");
                             String entredPassword = Console.ReadLine();
+
                             //Makes an instance of loginHandler and retrives password
                             //TODO make loginHandler retrive list of employees password and usernames
                             LoginHandler loginHandler = new LoginHandler();
-                            username = loginHandler.getUsername();
-                            password = loginHandler.getPassword();
+                            username = "Emil";//loginHandler.getUsername();
+                            password = "Fredberg";//loginHandler.getPassword();
                             if (entredPassword == password && entredUsername == username)
                             {
                                 PersonaleMenu();
@@ -97,9 +98,10 @@ namespace HydacProject
 
         static void PersonaleMenu() {
             Visitor visitor = new Visitor();
-            VisitorList list = new VisitorList();
+            VisitorList visitorList = new VisitorList();
             Employee employee = new Employee();
             EmployeeList employeeList = new EmployeeList();
+            FileHandler handler = new FileHandler();
 
             bool inWhile = true;
             while (inWhile == true)
@@ -129,6 +131,7 @@ namespace HydacProject
                     case 1:
                         {
                             visitor = new Visitor();
+
                             Console.Clear();
                             Console.WriteLine("Indtast hvilket firma du kommer fra:");
                             visitor.companyName = Console.ReadLine();
@@ -150,19 +153,23 @@ namespace HydacProject
                                 visitor.safetyBrochurGiven = false;
                             }
 
+                            visitor.timeOfArrival = DateTime.Now;
+                            visitor.timeOfDeparture = default;
 
                             Console.Clear();
                             Console.WriteLine("Hvem er din sikkerhedsansvarlig:");
                             visitor.responsableForVisitor = Console.ReadLine();
 
                             // Add visitor to visitor's vistor list
-                            list.AddVisitor(visitor);
+                            visitorList.AddVisitor(visitor);
+                            handler.SaveVisitorToFile(visitorList, filePathVisitor);
+                           
                             break;
                         }
                     case 2:
                         Console.Clear();
                         {
-                            list.PrintVisitor(visitor);
+                            visitorList.PrintVisitor(visitor);
 
 
                             break;
@@ -178,8 +185,9 @@ namespace HydacProject
                         Console.WriteLine("Indtast det ønskede password");
                         employee.password = Console.ReadLine();
 
-                        //TODO
-
+                        employeeList.AddEmployee(employee);
+                        FileHandler fileHandler = new FileHandler();
+                        fileHandler.SaveEmployeeToFile(employeeList, filePathEmployee);
                         break;
 
                     case 4:
@@ -207,7 +215,6 @@ namespace HydacProject
             FileHandler handler = new FileHandler();
             Visitor visitor = new Visitor();
             VisitorList list = new VisitorList();
-            string filePathVisitor = "Visitors.txt";
             bool inWhile2 = true;
             while (inWhile2 == true)
             {
