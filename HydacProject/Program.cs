@@ -6,25 +6,27 @@ namespace HydacProject
     
     internal class Program
     {
-       public static string filePath = "Visitors.txt";
+       public static string filePathVisitor = "Visitors.txt";
+       public static string filePathEmloyee = "Employee.txt";
         static void Main(string[] args)
         {
 
             
-            if (File.Exists(filePath) != true)
+            if (File.Exists(filePathVisitor) != true)
             {
-                Console.WriteLine("Created Storage file");
-                File.Create(filePath);
+                Console.WriteLine("Created Storage file for Vistors");
+                File.Create(filePathVisitor);
+            }
+            if (File.Exists(filePathEmloyee) != true) {
+                Console.WriteLine("Created Storage file for Employees");
+                File.Create(filePathEmloyee);
             }
 
+            //Er jeg blind, eller bruges de her objekter til noget?
             FileHandler handler = new FileHandler();
             Visitor visitor = new Visitor();
             VisitorList list = new VisitorList();
-            // Tjek om filstien eksistere til Hydac.txt
-            // Hvis den ikke eksistere opret en fil og filsti til Hydac.txt
-            // Hvis den eksistere, gå videre :)
 
-            // While true
 
                 Menu.StartMenu();
 

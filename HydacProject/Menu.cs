@@ -9,7 +9,9 @@ namespace HydacProject
 {
     internal class Menu
     {
-        public string filePath = "Visitors.txt";
+        public string filePathVisitor = "Visitors.txt";
+        public string filePathEmployee = "Employee.txt";
+
         public static void StartMenu() {
             bool inWhile = true;
 
@@ -20,8 +22,8 @@ namespace HydacProject
             // While true
 
 
-            
                 Console.Clear();
+
                 Console.WriteLine(" Tryk 1 hvis du er kunde\n");
 
                 Console.WriteLine(" Tryk 2 hvis du er personale\n");
@@ -36,10 +38,12 @@ namespace HydacProject
                     switch (Console.ReadLine())
                     {
                         case "1":
+                            Console.Clear();
                             KundeMenu();
                             break;
 
                         case "2":
+                            Console.Clear();
                             Console.WriteLine("Indtast brugernavn:");
                             String entredUsername = Console.ReadLine();
                             Console.WriteLine("Skriv password");
@@ -94,6 +98,8 @@ namespace HydacProject
         static void PersonaleMenu() {
             Visitor visitor = new Visitor();
             VisitorList list = new VisitorList();
+            Employee employee = new Employee();
+            EmployeeList employeeList = new EmployeeList();
 
             bool inWhile = true;
             while (inWhile == true)
@@ -110,10 +116,12 @@ namespace HydacProject
 
                 Console.WriteLine("Tast 1 for at tilføje besøgende");
                 Console.WriteLine("Tast 2 for at fjerne besøgende");
-                Console.WriteLine("Tast 3 for at se alle aktuelle besøgende");
-                Console.WriteLine("Tast 4 for at redigere besøgende");
-                Console.WriteLine("Tast 5 for historik over besøgende");
-                Console.WriteLine("Tast 6 for startmenu\n");
+                Console.WriteLine("Tast 3 for at tilføje medarbejder");
+                Console.WriteLine("Tast 4 for at fjerne medarbejder");
+                Console.WriteLine("Tast 5 for at se alle aktuelle besøgende");
+                Console.WriteLine("Tast 6 for at redigere besøgende");
+                Console.WriteLine("Tast 7 for historik over besøgende");
+                Console.WriteLine("Tast 8 for startmenu\n");
 
                 switch (Convert.ToInt32(Console.ReadLine()))
 
@@ -160,6 +168,17 @@ namespace HydacProject
                             break;
                         }
                     case 3:
+                        employee = new Employee(); 
+
+                        Console.Clear();
+                        Console.WriteLine("Indtast medarbejderens navn:");
+                        employee.personName = Console.ReadLine();
+
+                        Console.Clear();
+                        Console.WriteLine("Indtast det ønskede password");
+                        employee.password = Console.ReadLine();
+
+                        //TODO
 
                         break;
 
@@ -188,7 +207,7 @@ namespace HydacProject
             FileHandler handler = new FileHandler();
             Visitor visitor = new Visitor();
             VisitorList list = new VisitorList();
-            string filePath = "Visitors.txt";
+            string filePathVisitor = "Visitors.txt";
             bool inWhile2 = true;
             while (inWhile2 == true)
             {
@@ -235,7 +254,7 @@ namespace HydacProject
 
                             // Add visitor to visitor's vistor list
                             list.AddVisitor(visitor);
-                            handler.SaveVisitorToFile(list, filePath);
+                            handler.SaveVisitorToFile(list, filePathVisitor);
                             break;
                         }
 

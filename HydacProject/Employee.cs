@@ -16,6 +16,7 @@ namespace HydacProject
         
         //No Arg Consturctor
         public Employee() { }  
+
         public Employee(string personName,MoodSmiley mood)
         {
             this.DateOfDeparture = DateTime.Now;

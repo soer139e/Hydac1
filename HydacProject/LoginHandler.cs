@@ -12,8 +12,9 @@ namespace HydacProject
         String password;
 
         public LoginHandler() {
-            username = "Emil";
-            password = "Fredberg";
+            Employee employee = new Employee();
+            username = employee.personName;
+            password = employee.password;
         }
         public String getUsername() { 
             return username;
