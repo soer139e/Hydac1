@@ -26,11 +26,11 @@ namespace HydacProject
             bool inWhile = true;
             while (inWhile == true)
             {
-                
 
-                
 
-               
+
+
+
                 Console.WriteLine("Velkommen til Hydac komme/gå system\n");
 
                 Console.WriteLine("Vælg/tast én af nedestående valgmuligheder: \n");
@@ -42,9 +42,9 @@ namespace HydacProject
                 Console.WriteLine("Tast 5 for historik over besøgende");
                 Console.WriteLine("Tast 6 for at lukke programmet\n");
 
-                switch(Convert.ToInt32(Console.ReadLine()))
+                switch (Convert.ToInt32(Console.ReadLine()))
 
-                   {
+                {
                     case 1:
                         {
                             visitor = new Visitor();
@@ -55,15 +55,16 @@ namespace HydacProject
                             Console.Clear();
                             Console.WriteLine("Indtast dit navn:");
 
-                
-            }
-        }
+                            break;
+                        }
+                }
 
-            //Moved menu to Menu.cs
-            //Moved login/password til delvis Menu.cs og LoginHandler
-            Menu.StartMenu();
-            
-        } 
-            
+                //Moved menu to Menu.cs
+                //Moved login/password til delvis Menu.cs og LoginHandler
+                Menu.StartMenu();
+
+            }
+
+        }
     }
 }
