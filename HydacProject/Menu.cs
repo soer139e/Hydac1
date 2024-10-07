@@ -7,14 +7,26 @@ using System.Threading.Tasks;
 
 namespace HydacProject
 {
-    internal class Menu
+    public class Menu
     {
         public static string filePathVisitor = "Visitors.txt";
         public static string filePathEmployee = "Employee.txt";
+        public static string filePathVisitorInHouse = "VisitorsInHouse.txt";
+        public static string filePathEmployeeInHouse = "EmployeeInHouse.txt";
 
-        public static void StartMenu() {
+        public Visitor visitor = new Visitor();
+        public VisitorList visitorList = new VisitorList();
+        public VisitorList visitorListInHouse = new VisitorList();
+        public EmployeeList employeeListInHouse = new EmployeeList();
+        public Employee employee = new Employee();
+        public EmployeeList employeeList = new EmployeeList();
+        public FileHandler handler = new FileHandler();
+        public void StartMenu() {
             bool inWhile = true;
-
+            handler.ReadVisitorFromFile(visitorList, filePathVisitor);
+            handler.ReadEmployeeFromFile(employeeList, filePathEmployee);
+            handler.ReadVisitorFromFile(visitorListInHouse, filePathVisitorInHouse);
+            handler.ReadEmployeeFromFile(employeeListInHouse,filePathEmployeeInHouse);
             // Tjek om filstien eksistere til Hydac.txt
             // Hvis den ikke eksistere opret en fil og filsti til Hydac.txt
             // Hvis den eksistere, gå videre :)
@@ -24,18 +36,19 @@ namespace HydacProject
 
                 Console.Clear();
 
-                Console.WriteLine(" Tryk 1 hvis du er kunde\n");
-
-                Console.WriteLine(" Tryk 2 hvis du er personale\n");
-
-                Console.WriteLine(" Tryk 3 for at luk programmet");
+             
 
                 //Sets Password and Username to Null to initialize the variable
                 String username = null;
                 String password = null;
                 while (inWhile == true)
                 {
-                    switch (Console.ReadLine())
+                Console.WriteLine(" Tryk 1 hvis du er kunde\n");
+
+                Console.WriteLine(" Tryk 2 hvis du er personale\n");
+
+                Console.WriteLine(" Tryk 3 for at luk programmet");
+                switch (Console.ReadLine())
                     {
                         case "1":
                             Console.Clear();
@@ -96,12 +109,8 @@ namespace HydacProject
 
         }
 
-        static void PersonaleMenu() {
-            Visitor visitor = new Visitor();
-            VisitorList visitorList = new VisitorList();
-            Employee employee = new Employee();
-            EmployeeList employeeList = new EmployeeList();
-            FileHandler handler = new FileHandler();
+        public void PersonaleMenu() {
+            
 
             bool inWhile = true;
             while (inWhile == true)
@@ -111,17 +120,16 @@ namespace HydacProject
 
 
                 // Menuvalg
-                Console.Clear();
+               //Console.Clear();
                 Console.WriteLine("Velkommen til Hydac komme/gå system\n");
 
                 Console.WriteLine("Vælg/tast én af nedestående valgmuligheder: \n");
 
                 Console.WriteLine("Tast 1 for at tilføje besøgende");
-                Console.WriteLine("Tast 2 for at fjerne besøgende");
+                Console.WriteLine("Tast 2 for at se alle aktuelle besøgende");
                 Console.WriteLine("Tast 3 for at tilføje medarbejder");
                 Console.WriteLine("Tast 4 for at fjerne medarbejder");
-                Console.WriteLine("Tast 5 for at se alle aktuelle besøgende");
-                Console.WriteLine("Tast 6 for at redigere besøgende");
+                Console.WriteLine("Tast 5 for at fjerne besøgende");
                 Console.WriteLine("Tast 7 for historik over besøgende");
                 Console.WriteLine("Tast 8 for startmenu\n");
 
@@ -130,7 +138,7 @@ namespace HydacProject
                 {
                     case 1:
                         {
-                            visitor = new Visitor();
+                           visitor = new Visitor();
 
                             Console.Clear();
                             Console.WriteLine("Indtast hvilket firma du kommer fra:");
@@ -161,15 +169,15 @@ namespace HydacProject
                             visitor.responsableForVisitor = Console.ReadLine();
 
                             // Add visitor to visitor's vistor list
-                            visitorList.AddVisitor(visitor);
-                            handler.SaveVisitorToFile(visitorList, filePathVisitor);
+                            visitorListInHouse.AddVisitor(visitor);
+                            
                            
                             break;
                         }
                     case 2:
-                        Console.Clear();
                         {
-                            visitorList.PrintVisitor(visitor);
+                            Console.Clear();
+                            visitorList.PrintVisitors(visitorList);
 
 
                             break;
@@ -178,25 +186,61 @@ namespace HydacProject
                         employee = new Employee(); 
 
                         Console.Clear();
-                        Console.WriteLine("Indtast medarbejderens navn:");
+                        Console.Write("Indtast medarbejderens navn:");
                         employee.personName = Console.ReadLine();
 
                         Console.Clear();
-                        Console.WriteLine("Indtast det ønskede password");
+                        Console.Write("Indtast det ønskede password");
                         employee.password = Console.ReadLine();
 
                         employeeList.AddEmployee(employee);
-                        FileHandler fileHandler = new FileHandler();
-                        fileHandler.SaveEmployeeToFile(employeeList, filePathEmployee);
+                        handler = new FileHandler();
+                        handler.SaveEmployeeToInHouseFile(employeeListInHouse, filePathEmployeeInHouse,employee);
                         break;
 
                     case 4:
+                        
+                        Console.Write("Skriv navnet på medarbejder: ");
+                        string nameForRemoval = Console.ReadLine();
+                        bool nameFound = false;
+                        for (int i = 0; i < employeeListInHouse.employeeCount; i++)
+                        {
+                            if ( nameForRemoval == employeeListInHouse.employees[i].personName)
+                            {
+                                employeeList.RemoveEmployee(employeeListInHouse.employees[i]);
+                                Console.WriteLine("Du har nu fjernet {0}",nameForRemoval);
+                                handler.SaveEmployeeToFile(employeeList, filePathEmployee, employeeListInHouse.employees[i]);
+                                nameFound = true;
+                            }
+                        }
+                        if(nameFound != true)
+                        {
+                            Console.WriteLine("Fandt ikke medarbejderen, sikrer at navnet er indtastet korrekt.");
+                        }
+                        
 
                         break;
 
                     case 5:
 
-
+                        //Tast 5 for at fjerne besøgende
+                        Console.Write("Skriv navnet på besøgende: ");
+                        nameForRemoval = Console.ReadLine();
+                        nameFound = false;
+                        for (int i = 0; i < visitorListInHouse.visitorCount; i++)
+                        {
+                            if (nameForRemoval == visitorListInHouse.visitors[i].personName)
+                            {
+                                visitorListInHouse.RemoveVisitor(visitorListInHouse.visitors[i]);
+                                Console.WriteLine("Du har nu fjernet {0}", nameForRemoval);
+                                handler.SaveVisitorToFile(visitorList, filePathVisitor, visitorListInHouse.visitors[i]);
+                                nameFound = true;
+                            }
+                        }
+                        if (nameFound != true)
+                        {
+                            Console.WriteLine("Fandt ikke den besøgende, sikrer at navnet er indtastet korrekt.");
+                        }
 
 
                         break;
@@ -211,10 +255,10 @@ namespace HydacProject
             }
             }
 
-        static void KundeMenu() {
-            FileHandler handler = new FileHandler();
-            Visitor visitor = new Visitor();
-            VisitorList list = new VisitorList();
+        public void KundeMenu() {
+           // FileHandler handler = new FileHandler();
+            //Visitor visitor = new Visitor();
+            //VisitorList list = new VisitorList();
             bool inWhile2 = true;
             while (inWhile2 == true)
             {
@@ -226,7 +270,9 @@ namespace HydacProject
 
                 Console.WriteLine("Tast 1 for at tilføje besøgende\n");
 
-                Console.WriteLine("Tast 2 for startmenu");
+                Console.WriteLine("Tast 2 for at tjekke en besøgende ud");
+                
+                Console.WriteLine("Tast 3 for startmenu");
 
 
                 switch (Convert.ToInt32(Console.ReadLine()))
@@ -260,13 +306,34 @@ namespace HydacProject
                             visitor.responsableForVisitor = Console.ReadLine();
 
                             // Add visitor to visitor's vistor list
-                            list.AddVisitor(visitor);
-                            handler.SaveVisitorToFile(list, filePathVisitor);
+                            visitorListInHouse.AddVisitor(visitor);
+                            
                             break;
                         }
 
-
                     case 2:
+                        {
+                            Console.Write("Skriv navnet på besøgende: ");
+                            string nameForRemoval = Console.ReadLine();
+                            bool nameFound = false;
+                            for (int i = 0; i < visitorListInHouse.visitorCount; i++)
+                            {
+                                if (nameForRemoval == visitorListInHouse.visitors[i].personName)
+                                {
+                                    visitorListInHouse.RemoveVisitor(visitorListInHouse.visitors[i]);
+                                    Console.WriteLine("Du har nu fjernet {0}", nameForRemoval);
+                                    handler.SaveVisitorToFile(visitorList,filePathVisitor, visitorListInHouse.visitors[i]);
+                                    nameFound = true;
+                                }
+                            }
+                            if (nameFound != true)
+                            {
+                                Console.WriteLine("Fandt ikke den besøgende, sikrer at navnet er indtastet korrekt.");
+                            }
+                            
+                            break;
+                        }
+                    case 3:
                         {
                             inWhile2 = false;
                             StartMenu();

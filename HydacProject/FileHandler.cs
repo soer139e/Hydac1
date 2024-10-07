@@ -17,24 +17,24 @@ namespace HydacProject
          
         //SaveVisitorToFile saves the Visitor list to a .txt file
         //It accepts a Visitorlist and a filePath
-        public void SaveVisitorToFile(VisitorList visitorList, string filePath)
+        public void SaveVisitorToFile(VisitorList visitorList,string filePath,Visitor visitor)
         {
             //Gets StreamWriter library and creates a instances of it that will write to the specified .txt file 
             using (StreamWriter writer = new StreamWriter(filePath, true))
             {
 
+                visitor.timeOfDeparture = DateTime.Now;
 
-                
                     // Writes the properties in Visitor separated by a comma
                     // threw an index exception because of visitorCount++ before return in AddVisitor.
                     // Made a method to increment after the visitor hans been writen.
                     writer.WriteLine(
-                        $"{visitorList.visitors[visitorList.visitorCount].companyName}," +
-                        $"{visitorList.visitors[visitorList.visitorCount].personName}," +
-                        $"{visitorList.visitors[visitorList.visitorCount].safetyBrochurGiven}," +
-                        $"{visitorList.visitors[visitorList.visitorCount].responsableForVisitor}," +
-                        $"{visitorList.visitors[visitorList.visitorCount].timeOfArrival}," +
-                        $"{visitorList.visitors[visitorList.visitorCount].timeOfDeparture}");
+                        $"{visitor.companyName}," +
+                        $"{visitor.personName}," +
+                        $"{visitor.safetyBrochurGiven}," +
+                        $"{visitor.responsableForVisitor}," +
+                        $"{visitor.timeOfArrival}," +
+                        $"{visitor.timeOfDeparture}");
 
                 
 
@@ -63,9 +63,14 @@ namespace HydacProject
                     visitor.safetyBrochurGiven = Convert.ToBoolean(lineSplit[2]);
                     visitor.responsableForVisitor = lineSplit[3];
                     // adds the visitor to a visitor list
-                    visitorlist.visitors[visitorlist.visitorCount] = visitor;
-
+                    visitorlist.visitors.Add(visitor);
+                    visitorlist.IncrementVisitorCount();
+                    visitor = new Visitor();
                     line = reader.ReadLine();
+                    if (line == "")
+                    {
+                        line = null;
+                    }
                 }
             }
 
@@ -92,32 +97,55 @@ namespace HydacProject
                     employee.DateOfArrival = Convert.ToDateTime(lineSplit[3]);
                     employee.DateOfDeparture = Convert.ToDateTime(lineSplit[4]);
                     // adds the employee to a employee list
-                    employeeList.employees[employeeList.employeeCount] = employee;
-
+                    employeeList.employees.Add(employee);
+                    employeeList.IncrementEmployeeCount();
+                    employee = new Employee();
                     line = reader.ReadLine();
+                    if(line == "")
+                    {
+                        line = null;
+                    }
                 }
             }
         }
-        public void SaveEmployeeToFile(EmployeeList employeeList, string filePath)
+        public void SaveEmployeeToFile(EmployeeList employeeList, string filePath, Employee employee)
+        {
+            //Gets StreamWriter library and creates a instances of it that will write to the specified .txt file 
+            using (StreamWriter writer = new StreamWriter(filePath, true))
+            {
+                employee.DateOfDeparture = DateTime.Now;
+
+
+                // Writes the properties in Employee separated by a comma
+
+                writer.WriteLine($"{employee.personName}," +
+                    $"{employee.password}," +
+                    $"{employee.moodSmiley}," +
+                    $"{employee.DateOfArrival}," +
+                    $"{employee.DateOfDeparture},");
+
+                employeeList.IncrementEmployeeCount();
+
+            }
+        }
+        public void SaveEmployeeToInHouseFile(EmployeeList employeeListInHouse, string filePath, Employee employee)
         {
             //Gets StreamWriter library and creates a instances of it that will write to the specified .txt file 
             using (StreamWriter writer = new StreamWriter(filePath, true))
             {
 
-
-
                 // Writes the properties in Employee separated by a comma
 
-                writer.WriteLine($"{employeeList.employees[employeeList.employeeCount].personName}," +
-                    $"{employeeList.employees[employeeList.employeeCount].password}," +
-                    $"{employeeList.employees[employeeList.employeeCount].moodSmiley}," +
-                    $"{employeeList.employees[employeeList.employeeCount].DateOfArrival}," +
-                    $"{employeeList.employees[employeeList.employeeCount].DateOfDeparture}," );
-
-
+                writer.WriteLine($"{employee.personName}," +
+                    $"{employee.password}," +
+                    $"{employee.moodSmiley}," +
+                    $"{employee.DateOfArrival},");
 
             }
-            employeeList.IncrementEmployeeCount();
+                employeeListInHouse.IncrementEmployeeCount();
+
         }
+            
     }
 }
+

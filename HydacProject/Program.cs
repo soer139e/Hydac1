@@ -8,9 +8,11 @@ namespace HydacProject
     {
        public static string filePathVisitor = "Visitors.txt";
        public static string filePathEmloyee = "Employee.txt";
+        public static string filePathVisitorInHouse = "VisitorsInHouse.txt";
+        public static string filePathEmployeeInHouse = "EmployeeInHouse.txt";
         static void Main(string[] args)
         {
-
+            Menu menu = new Menu();
             
             if (File.Exists(filePathVisitor) != true)
             {
@@ -21,14 +23,21 @@ namespace HydacProject
                 Console.WriteLine("Created Storage file for Employees");
                 File.Create(filePathEmloyee);
             }
+            if (File.Exists(filePathEmployeeInHouse) != true)
+            {
+                Console.WriteLine("Created Storage file for EmployeesInHouse");
+                File.Create(filePathEmployeeInHouse);
+            }
+            if (File.Exists(filePathVisitorInHouse) != true)
+            {
+                Console.WriteLine("Created Storage file for VisitorInHouse");
+                File.Create(filePathVisitorInHouse);
+            }
+          
 
-            //Er jeg blind, eller bruges de her objekter til noget?
-            FileHandler handler = new FileHandler();
-            Visitor visitor = new Visitor();
-            VisitorList list = new VisitorList();
 
 
-                Menu.StartMenu();
+            menu.StartMenu();
 
      }
 

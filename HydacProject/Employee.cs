@@ -37,11 +37,10 @@ namespace HydacProject
             return employees;
 
         }
-        public List<Employee> RemoveEmployee(Employee employee)
+        public void RemoveEmployee(Employee employee)
         {
             employees.Remove(employee);
-            return employees;
-
+            employeeCount--;
         }
         public void IncrementEmployeeCount()
         {

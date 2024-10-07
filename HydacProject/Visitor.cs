@@ -54,14 +54,17 @@ namespace HydacProject
             return visitors;
         }
 
-        public List<Visitor> PrintVisitor(Visitor visitor)
+        public void PrintVisitors(VisitorList visitors)
         {
-            foreach (Visitor visitor2 in visitors)
+            foreach (Visitor visitor in visitors.visitors)
             {
-                Console.WriteLine(visitor2);
+                Console.WriteLine($"FirmaNavn: {visitor.companyName}, " +
+                    $"KundeNavn: {visitor.personName}, " +
+                    $"SikkerhedsBrouchur Givet: {visitor.safetyBrochurGiven}, " +
+                    $"Ansvarlig for besøgende: {visitor.responsableForVisitor} ");
                 
             }
-            return visitors;
+            
         }
 
 
