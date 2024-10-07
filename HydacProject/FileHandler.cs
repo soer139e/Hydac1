@@ -55,19 +55,22 @@ namespace HydacProject
                 //Loops through the .txt file until all is read
                 while (line != null)
                 {
-                    // Gets the current line and splits it at every ',' turning it into a string array
-                    lineSplit = line.Split(new char[] { ',' });
-                    // Assigns visitor the read data
-                    visitor.companyName = lineSplit[0];
-                    visitor.personName = lineSplit[1];
-                    visitor.safetyBrochurGiven = Convert.ToBoolean(lineSplit[2]);
-                    visitor.responsableForVisitor = lineSplit[3];
-                    // adds the visitor to a visitor list
-                    visitorlist.visitors.Add(visitor);
-                    visitorlist.IncrementVisitorCount();
-                    visitor = new Visitor();
-                    line = reader.ReadLine();
-                    if (line == "")
+                    if (line != "")
+                    {
+                        // Gets the current line and splits it at every ',' turning it into a string array
+                        lineSplit = line.Split(new char[] { ',' });
+                        // Assigns visitor the read data
+                        visitor.companyName = lineSplit[0];
+                        visitor.personName = lineSplit[1];
+                        visitor.safetyBrochurGiven = Convert.ToBoolean(lineSplit[2]);
+                        visitor.responsableForVisitor = lineSplit[3];
+                        // adds the visitor to a visitor list
+                        visitorlist.visitors.Add(visitor);
+                        visitorlist.IncrementVisitorCount();
+                        visitor = new Visitor();
+                        line = reader.ReadLine();
+                    }
+                    else if (line == "")
                     {
                         line = null;
                     }

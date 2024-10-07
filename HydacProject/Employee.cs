@@ -46,6 +46,17 @@ namespace HydacProject
         {
             employeeCount++;
         }
+        public void PrintEmployee()
+        {
+            foreach (Employee employee in employees)
+            {
+                Console.WriteLine($"MedarbejderNavn: {employee.personName}, " +
+                    $"Humørsmiley status: {employee.moodSmiley.smileyStatus}, " +
+                    $"Ankomsttid: {employee.DateOfArrival} " +
+                    $"Afgangstid: {employee.DateOfDeparture}");
+
+            }
+        }
     }
     public class MoodSmiley
     {

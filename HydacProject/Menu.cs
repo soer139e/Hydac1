@@ -93,7 +93,7 @@ namespace HydacProject
 
                         default:
 
-                         Console.WriteLine("fejl, tryk 1 eller 2");
+                         Console.WriteLine("fejl, tryk 1, 2 eller 3");
 
 
 
@@ -130,8 +130,10 @@ namespace HydacProject
                 Console.WriteLine("Tast 3 for at tilføje medarbejder");
                 Console.WriteLine("Tast 4 for at fjerne medarbejder");
                 Console.WriteLine("Tast 5 for at fjerne besøgende");
-                Console.WriteLine("Tast 7 for historik over besøgende");
-                Console.WriteLine("Tast 8 for startmenu\n");
+                Console.WriteLine("Tast 6 for historik over besøgende");
+                Console.WriteLine("Tast 7 for at se medarbejder historik");
+                Console.WriteLine("Tast 8 for at se aktuelle med arbejdere");
+                Console.WriteLine("Tast 9 for startmenu\n");
 
                 switch (Convert.ToInt32(Console.ReadLine()))
 
@@ -177,7 +179,7 @@ namespace HydacProject
                     case 2:
                         {
                             Console.Clear();
-                            visitorList.PrintVisitors(visitorList);
+                            visitorListInHouse.PrintVisitors();
 
 
                             break;
@@ -244,8 +246,19 @@ namespace HydacProject
 
 
                         break;
-
                     case 6:
+                        visitorList.PrintVisitors();
+                        break;
+                      
+                    case 7:
+                        //Historik
+                        employeeList.PrintEmployee();
+                        break;
+                    case 8:
+                        // Aktuelle
+                        employeeListInHouse.PrintEmployee();
+                        break;
+                    case 9:
                         inWhile = false;
                         StartMenu();
                         break;
