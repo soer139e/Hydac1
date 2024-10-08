@@ -116,7 +116,7 @@ namespace HydacProject
             while (inWhile == true)
             {
 
-                // Switch
+                
 
 
                 // Menuvalg
@@ -188,6 +188,7 @@ namespace HydacProject
                         employee = new Employee(); 
 
                         Console.Clear();
+                        Console.WriteLine();
                         Console.Write("Indtast medarbejderens navn:");
                         employee.personName = Console.ReadLine();
 
@@ -195,8 +196,12 @@ namespace HydacProject
                         Console.Write("Indtast det ønskede password");
                         employee.password = Console.ReadLine();
 
-                        employeeList.AddEmployee(employee);
+                        
                         handler = new FileHandler();
+                        employee.DateOfDeparture = DateTime.Now;
+                        employee.moodSmiley.smileyStatus = "mid";
+                        employee.moodSmiley.smileyStatusGiven = true;
+                        employeeListInHouse.AddEmployee(employee);
                         handler.SaveEmployeeToInHouseFile(employeeListInHouse, filePathEmployeeInHouse,employee);
                         break;
 
@@ -205,22 +210,22 @@ namespace HydacProject
                         Console.Write("Skriv navnet på medarbejder: ");
                         string nameForRemoval = Console.ReadLine();
                         bool nameFound = false;
-                        for (int i = 0; i < employeeListInHouse.employeeCount; i++)
+                        for (int i = 0; i < employeeListInHouse.employees.Count; i++)
                         {
                             if ( nameForRemoval == employeeListInHouse.employees[i].personName)
                             {
-                                employeeList.RemoveEmployee(employeeListInHouse.employees[i]);
+                                
                                 Console.WriteLine("Du har nu fjernet {0}",nameForRemoval);
-                                handler.SaveEmployeeToFile(employeeList, filePathEmployee, employeeListInHouse.employees[i]);
+                                handler.SaveEmployeeToFile(employeeListInHouse, filePathEmployee, employeeListInHouse.employees[i]);
+                                handler.RemoveEmployeeFromFile(filePathEmployeeInHouse, employeeListInHouse.employees[i]);
                                 nameFound = true;
+                                employeeList.RemoveEmployee(employeeListInHouse.employees[i]);
                             }
                         }
                         if(nameFound != true)
                         {
                             Console.WriteLine("Fandt ikke medarbejderen, sikrer at navnet er indtastet korrekt.");
                         }
-                        
-
                         break;
 
                     case 5:

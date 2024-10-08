@@ -11,7 +11,7 @@ namespace HydacProject
     {
         public string personName;
         public DateTime DateOfArrival;
-        public MoodSmiley moodSmiley;
+        public MoodSmiley moodSmiley = new MoodSmiley();
         public DateTime DateOfDeparture;
         public string password;
         
@@ -20,7 +20,7 @@ namespace HydacProject
 
         public Employee(string personName,MoodSmiley mood, string password)
         {
-            this.DateOfDeparture = DateTime.Now;
+            this.DateOfArrival = DateTime.Now;
             this.personName = personName;
             this.moodSmiley = mood;
             this.password = password;
@@ -33,6 +33,7 @@ namespace HydacProject
 
         public List<Employee> AddEmployee(Employee employee)
         {
+            employee.DateOfArrival = DateTime.Now;
             employees.Add(employee);
             return employees;
 
@@ -41,6 +42,7 @@ namespace HydacProject
         {
             employees.Remove(employee);
             employeeCount--;
+            
         }
         public void IncrementEmployeeCount()
         {
@@ -63,6 +65,10 @@ namespace HydacProject
         public bool smileyStatusGiven;
         public string smileyStatus;
 
+        public MoodSmiley()
+        {
+
+        }
         public MoodSmiley(bool smileyStatusGiven, string smileyStatus)
         {
             this.smileyStatusGiven = smileyStatusGiven;

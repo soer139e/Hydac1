@@ -55,25 +55,22 @@ namespace HydacProject
                 //Loops through the .txt file until all is read
                 while (line != null)
                 {
-                    if (line != "")
-                    {
-                        // Gets the current line and splits it at every ',' turning it into a string array
-                        lineSplit = line.Split(new char[] { ',' });
-                        // Assigns visitor the read data
-                        visitor.companyName = lineSplit[0];
-                        visitor.personName = lineSplit[1];
-                        visitor.safetyBrochurGiven = Convert.ToBoolean(lineSplit[2]);
-                        visitor.responsableForVisitor = lineSplit[3];
-                        // adds the visitor to a visitor list
-                        visitorlist.visitors.Add(visitor);
+
+                    // Gets the current line and splits it at every ',' turning it into a string array
+                    lineSplit = line.Split(new char[] { ',' });
+                    // Assigns visitor the read data
+                    visitor.companyName = lineSplit[0];
+                    visitor.personName = lineSplit[1];
+                    visitor.safetyBrochurGiven = Convert.ToBoolean(lineSplit[2]);
+                    visitor.responsableForVisitor = lineSplit[3];
+                    visitor.timeOfArrival = Convert.ToDateTime(lineSplit[4]);
+                    visitor.timeOfArrival = Convert.ToDateTime(lineSplit[5]);
+                    // adds the visitor to a visitor list
+                    visitorlist.visitors.Add(visitor);
                         visitorlist.IncrementVisitorCount();
                         visitor = new Visitor();
                         line = reader.ReadLine();
-                    }
-                    else if (line == "")
-                    {
-                        line = null;
-                    }
+                    
                 }
             }
 
@@ -91,20 +88,30 @@ namespace HydacProject
                 //Loops through the .txt file until all is read
                 while (line != null)
                 {
-                    // Gets the current line and splits it at every ',' turning it into a string array
-                    lineSplit = line.Split(new char[] { ',' });
-                    // Assigns employee the read data
-                    employee.personName = lineSplit[0];
-                    employee.password = lineSplit[1];
-                    //employee.moodSmiley = lineSplit[2];
-                    employee.DateOfArrival = Convert.ToDateTime(lineSplit[3]);
-                    employee.DateOfDeparture = Convert.ToDateTime(lineSplit[4]);
-                    // adds the employee to a employee list
-                    employeeList.employees.Add(employee);
-                    employeeList.IncrementEmployeeCount();
-                    employee = new Employee();
-                    line = reader.ReadLine();
-                    if(line == "")
+                    if (line != "")
+                    {
+                        // Gets the current line and splits it at every ',' turning it into a string array
+                        lineSplit = line.Split(new char[] { ',' });
+                        // Assigns employee the read data
+                        employee.personName = lineSplit[0];
+                        employee.password = lineSplit[1];
+                        employee.moodSmiley.smileyStatus = lineSplit[2];
+
+                        if (lineSplit[3] != null || lineSplit[3] != "")
+                        {
+                            employee.DateOfArrival = Convert.ToDateTime(lineSplit[3]);
+                        }
+                        if (lineSplit[4] != null || lineSplit[4] != "")
+                        {
+                            employee.DateOfDeparture = Convert.ToDateTime(lineSplit[4]);
+                        }
+                        // adds the employee to a employee list
+                        employeeList.employees.Add(employee);
+                        employeeList.IncrementEmployeeCount();
+                        employee = new Employee();
+                        line = reader.ReadLine();
+                    }
+                    else if (line == "")
                     {
                         line = null;
                     }
@@ -125,7 +132,7 @@ namespace HydacProject
                     $"{employee.password}," +
                     $"{employee.moodSmiley}," +
                     $"{employee.DateOfArrival}," +
-                    $"{employee.DateOfDeparture},");
+                    $"{employee.DateOfDeparture}");
 
                 employeeList.IncrementEmployeeCount();
 
@@ -142,13 +149,42 @@ namespace HydacProject
                 writer.WriteLine($"{employee.personName}," +
                     $"{employee.password}," +
                     $"{employee.moodSmiley}," +
-                    $"{employee.DateOfArrival},");
+                    $"{employee.DateOfArrival}," +
+                    $"{employee.DateOfDeparture}");
 
             }
                 employeeListInHouse.IncrementEmployeeCount();
 
         }
-            
+        public void RemoveEmployeeFromFile(string filePath, Employee employee)
+        {
+            bool found = false;
+            string line;
+            string[] lineSplit;
+            using (StreamReader reader = new StreamReader(filePath, true))
+            {
+                line = reader.ReadLine();
+                while (line != null)
+                {
+                    lineSplit = line.Split(',');
+                    if (lineSplit[0] == employee.personName)
+                    {
+                        found = true;
+                        break;
+                    }
+
+                }
+
+            }
+            if (found == true)
+            {
+                using (StreamWriter writer = new StreamWriter(filePath, true))
+                {
+                    //writer.remove;
+
+                }
+            }
+        }
     }
 }
 
