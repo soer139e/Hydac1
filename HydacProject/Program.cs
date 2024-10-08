@@ -12,30 +12,31 @@ namespace HydacProject
         public static string filePathEmployeeInHouse = "EmployeeInHouse.txt";
         static void Main(string[] args)
         {
-            Menu menu = new Menu();
-            
+
             if (File.Exists(filePathVisitor) != true)
             {
                 Console.WriteLine("Created Storage file for Vistors");
-                File.Create(filePathVisitor);
+                using FileStream fs = File.Create(filePathVisitor);
             }
             if (File.Exists(filePathEmloyee) != true) {
+               
                 Console.WriteLine("Created Storage file for Employees");
-                File.Create(filePathEmloyee);
+                using FileStream fs = File.Create(filePathEmloyee);
+                
             }
             if (File.Exists(filePathEmployeeInHouse) != true)
             {
                 Console.WriteLine("Created Storage file for EmployeesInHouse");
-                File.Create(filePathEmployeeInHouse);
+                using FileStream fs = File.Create(filePathEmployeeInHouse);
             }
             if (File.Exists(filePathVisitorInHouse) != true)
             {
                 Console.WriteLine("Created Storage file for VisitorInHouse");
-                File.Create(filePathVisitorInHouse);
+                using FileStream fs = File.Create(filePathVisitorInHouse);
             }
-          
 
-
+            
+            Menu menu = new Menu();
 
             menu.StartMenu();
 

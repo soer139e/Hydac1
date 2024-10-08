@@ -16,7 +16,10 @@ namespace HydacProject
         public string password;
         
         //No Arg Consturctor
-        public Employee() { }  
+        public Employee() {
+            personName = "";
+            password = "";
+        }  
 
         public Employee(string personName,MoodSmiley mood, string password)
         {
@@ -67,7 +70,7 @@ namespace HydacProject
 
         public MoodSmiley()
         {
-
+            smileyStatus = "";
         }
         public MoodSmiley(bool smileyStatusGiven, string smileyStatus)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -181,39 +182,75 @@ namespace HydacProject
             string tempFile = Path.GetTempFileName();
             string line;
             string[] lineSplit;
+
             using (StreamReader reader = new StreamReader(filePath, true))
+            using (StreamWriter tempSaveFile = new StreamWriter(tempFile))
             {
-                line = reader.ReadLine();
-                while (line != null)
+                while ((line = reader.ReadLine()) != null)
                 {
                     lineSplit = line.Split(',');
                     if (lineSplit[0] == employee.personName)
                     {
                         found = true;
-                        break;
+                        continue;
                     }
 
+                    tempSaveFile.WriteLine(line);
                 }
 
-            }
-            if (found == true)
-            {
-                using (StreamWriter writer = new StreamWriter(filePath, true))
-                using (StreamWriter tempSaveFile = new StreamWriter(tempFile))
-                using (StreamReader reader = new StreamReader(filePath, true))
+                if (found == true)
                 {
-                    while((line = reader.ReadLine()) != null)
-                    {
-                        if(line != employee.personName)
-                        {
-                            tempSaveFile.WriteLine(line);
-                        }
-
-                    }
+                    reader.Close();
+                    tempSaveFile.Close();
                     File.Delete(filePath);
                     File.Move(tempFile, filePath);
+
+                }
+                else
+                {
+                    tempSaveFile.Close();
+                    File.Delete(tempFile);
+                }
+             } 
+
+        }
+        public void RemoveVisitorFromFile(string filePath, Visitor visitor)
+        {
+            bool found = false;
+            string tempFile = Path.GetTempFileName();
+            string line;
+            string[] lineSplit;
+
+            using (StreamReader reader = new StreamReader(filePath, true))
+            using (StreamWriter tempSaveFile = new StreamWriter(tempFile))
+            {
+                while ((line = reader.ReadLine()) != null)
+                {
+                    lineSplit = line.Split(',');
+                    if (lineSplit[1] == visitor.personName)
+                    {
+                        found = true;
+                        continue;
+                    }
+
+                    tempSaveFile.WriteLine(line);
+                }
+
+                if (found == true)
+                {
+                    reader.Close();
+                    tempSaveFile.Close();
+                    File.Delete(filePath);
+                    File.Move(tempFile, filePath);
+
+                }
+                else
+                {
+                    tempSaveFile.Close();
+                    File.Delete(tempFile);
                 }
             }
+
         }
     }
 }
