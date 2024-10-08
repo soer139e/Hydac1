@@ -159,6 +159,7 @@ namespace HydacProject
         public void RemoveEmployeeFromFile(string filePath, Employee employee)
         {
             bool found = false;
+            string tempFile = Path.GetTempFileName();
             string line;
             string[] lineSplit;
             using (StreamReader reader = new StreamReader(filePath, true))
@@ -179,8 +180,17 @@ namespace HydacProject
             if (found == true)
             {
                 using (StreamWriter writer = new StreamWriter(filePath, true))
+                using (StreamWriter tempSaveFile = new StreamWriter(tempFile))
+                using (StreamReader reader = new StreamReader(filePath, true))
                 {
-                    //writer.remove;
+                    while((line = reader.ReadLine()) != null)
+                    {
+                        if(line != employee.personName)
+                        {
+                            tempSaveFile.WriteLine(line);
+                        }
+
+                    }
 
                 }
             }

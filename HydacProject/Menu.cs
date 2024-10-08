@@ -65,8 +65,8 @@ namespace HydacProject
                             //Makes an instance of loginHandler and retrives password
                             //TODO make loginHandler retrive list of employees password and usernames
                             LoginHandler loginHandler = new LoginHandler();
-                            username = "Emil";//loginHandler.getUsername();
-                            password = "Fredberg";//loginHandler.getPassword();
+                            username = "1";//loginHandler.getUsername();
+                            password = "1";//loginHandler.getPassword();
                             if (entredPassword == password && entredUsername == username)
                             {
                                 PersonaleMenu();
@@ -172,7 +172,10 @@ namespace HydacProject
 
                             // Add visitor to visitor's vistor list
                             visitorListInHouse.AddVisitor(visitor);
-                            
+                            handler.SaveVisitorToFile(visitorListInHouse, filePathVisitorInHouse, visitor);
+                            Console.Clear();
+
+                            Console.WriteLine("Den besøgende blev tilføjet!\n");
                            
                             break;
                         }
@@ -188,12 +191,11 @@ namespace HydacProject
                         employee = new Employee(); 
 
                         Console.Clear();
-                        Console.WriteLine();
-                        Console.Write("Indtast medarbejderens navn:");
+                        Console.Write("Indtast medarbejderens navn: ");
                         employee.personName = Console.ReadLine();
 
                         Console.Clear();
-                        Console.Write("Indtast det ønskede password");
+                        Console.Write("Indtast det ønskede password: ");
                         employee.password = Console.ReadLine();
 
                         
@@ -203,6 +205,9 @@ namespace HydacProject
                         employee.moodSmiley.smileyStatusGiven = true;
                         employeeListInHouse.AddEmployee(employee);
                         handler.SaveEmployeeToInHouseFile(employeeListInHouse, filePathEmployeeInHouse,employee);
+
+                        Console.Clear();
+                        Console.WriteLine("Medarbejderen blev tilføjet!\n");
                         break;
 
                     case 4:
