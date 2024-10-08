@@ -120,19 +120,19 @@ namespace HydacProject
 
 
                 // Menuvalg
-               //Console.Clear();
+              
                 Console.WriteLine("Velkommen til Hydac komme/gå system\n");
 
                 Console.WriteLine("Vælg/tast én af nedestående valgmuligheder: \n");
 
                 Console.WriteLine("Tast 1 for at tilføje besøgende");
-                Console.WriteLine("Tast 2 for at se alle aktuelle besøgende");
-                Console.WriteLine("Tast 3 for at tilføje medarbejder");
+                Console.WriteLine("Tast 2 for at tilføje medarbejder");
+                Console.WriteLine("Tast 3 for at fjerne besøgende");
                 Console.WriteLine("Tast 4 for at fjerne medarbejder");
-                Console.WriteLine("Tast 5 for at fjerne besøgende");
-                Console.WriteLine("Tast 6 for historik over besøgende");
-                Console.WriteLine("Tast 7 for at se medarbejder historik");
-                Console.WriteLine("Tast 8 for at se aktuelle med arbejdere");
+                Console.WriteLine("Tast 5 for at se aktuelle besøgende");
+                Console.WriteLine("Tast 6 for at se aktuelle medarbejdere");
+                Console.WriteLine("Tast 7 for at se historik over besøgende");
+                Console.WriteLine("Tast 8 for at se historik over medarbejder");
                 Console.WriteLine("Tast 9 for startmenu\n");
 
                 switch (Convert.ToInt32(Console.ReadLine()))
@@ -140,6 +140,7 @@ namespace HydacProject
                 {
                     case 1:
                         {
+                            //Adds new visitor
                            visitor = new Visitor();
 
                             Console.Clear();
@@ -181,64 +182,35 @@ namespace HydacProject
                         }
                     case 2:
                         {
-                            Console.Clear();
-                            visitorListInHouse.PrintVisitors();
+                            //Adds new Employee
+                            employee = new Employee();
 
+                            Console.Clear();
+                            Console.Write("Indtast medarbejderens navn: ");
+                            employee.personName = Console.ReadLine();
+
+                            Console.Clear();
+                            Console.Write("Indtast det ønskede password: ");
+                            employee.password = Console.ReadLine();
+
+
+                            handler = new FileHandler();
+                            employee.DateOfDeparture = DateTime.Now;
+                            employee.moodSmiley.smileyStatus = "mid";
+                            employee.moodSmiley.smileyStatusGiven = true;
+                            employeeListInHouse.AddEmployee(employee);
+                            handler.SaveEmployeeToInHouseFile(employeeListInHouse, filePathEmployeeInHouse, employee);
+
+                            Console.Clear();
+                            Console.WriteLine("Medarbejderen blev tilføjet!\n");
 
                             break;
                         }
                     case 3:
-                        employee = new Employee(); 
-
-                        Console.Clear();
-                        Console.Write("Indtast medarbejderens navn: ");
-                        employee.personName = Console.ReadLine();
-
-                        Console.Clear();
-                        Console.Write("Indtast det ønskede password: ");
-                        employee.password = Console.ReadLine();
-
-                        
-                        handler = new FileHandler();
-                        employee.DateOfDeparture = DateTime.Now;
-                        employee.moodSmiley.smileyStatus = "mid";
-                        employee.moodSmiley.smileyStatusGiven = true;
-                        employeeListInHouse.AddEmployee(employee);
-                        handler.SaveEmployeeToInHouseFile(employeeListInHouse, filePathEmployeeInHouse,employee);
-
-                        Console.Clear();
-                        Console.WriteLine("Medarbejderen blev tilføjet!\n");
-                        break;
-
-                    case 4:
-                        
-                        Console.Write("Skriv navnet på medarbejder: ");
+                        //Removes Visitor
+                        Console.Write("Skriv navnet på besøgende: ");
                         string nameForRemoval = Console.ReadLine();
                         bool nameFound = false;
-                        for (int i = 0; i < employeeListInHouse.employees.Count; i++)
-                        {
-                            if ( nameForRemoval == employeeListInHouse.employees[i].personName)
-                            {
-                                
-                                Console.WriteLine("Du har nu fjernet {0}",nameForRemoval);
-                                handler.SaveEmployeeToFile(employeeListInHouse, filePathEmployee, employeeListInHouse.employees[i]);
-                                handler.RemoveEmployeeFromFile(filePathEmployeeInHouse, employeeListInHouse.employees[i]);
-                                nameFound = true;
-                                employeeList.RemoveEmployee(employeeListInHouse.employees[i]);
-                            }
-                        }
-                        if(nameFound != true)
-                        {
-                            Console.WriteLine("Fandt ikke medarbejderen, sikrer at navnet er indtastet korrekt.");
-                        }
-                        break;
-
-                    case 5:
-
-                        //Tast 5 for at fjerne besøgende
-                        Console.Write("Skriv navnet på besøgende: ");
-                        nameForRemoval = Console.ReadLine();
-                        nameFound = false;
                         for (int i = 0; i < visitorListInHouse.visitorCount; i++)
                         {
                             if (nameForRemoval == visitorListInHouse.visitors[i].personName)
@@ -253,20 +225,81 @@ namespace HydacProject
                         {
                             Console.WriteLine("Fandt ikke den besøgende, sikrer at navnet er indtastet korrekt.");
                         }
+                        break;
 
+                    case 4:
+                        //Removes Employee
+                        Console.Write("Skriv navnet på medarbejder: ");
+                        nameForRemoval = Console.ReadLine();
+                        nameFound = false;
+                        for (int i = 0; i < employeeListInHouse.employees.Count; i++)
+                        {
+                            if (nameForRemoval == employeeListInHouse.employees[i].personName)
+                            {
+
+                                Console.WriteLine("Du har nu fjernet {0}", nameForRemoval);
+                                handler.SaveEmployeeToFile(employeeListInHouse, filePathEmployee, employeeListInHouse.employees[i]);
+                                handler.RemoveEmployeeFromFile(filePathEmployeeInHouse, employeeListInHouse.employees[i]);
+                                nameFound = true;
+                                employeeList.RemoveEmployee(employeeListInHouse.employees[i]);
+                            }
+                        }
+                        if (nameFound != true)
+                        {
+                            Console.WriteLine("Fandt ikke medarbejderen, sikrer at navnet er indtastet korrekt.");
+                        }
+                        
 
                         break;
+
+                    case 5:
+                        //Shows List of current visitors
+                        Console.Clear();
+                        Console.WriteLine("Her er listen over aktuelle besøgende:\n");
+                        visitorListInHouse.PrintVisitors();
+                        Console.WriteLine("");
+                        if(visitorListInHouse.visitorCount == 0)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Listen for aktuelle besøgende er tom.\n");
+                            Console.WriteLine("Du sendes tilbage til menu:\n");
+                        }
+                        
+                        break;
                     case 6:
-                        visitorList.PrintVisitors();
+                        //Shows list of current employees
+                        Console.Clear();
+                        Console.WriteLine("Her er listen over aktuelle medarbejdere:\n");
+                        employeeListInHouse.PrintEmployee();
+                        Console.WriteLine("");
+                        if (employeeListInHouse.employeeCount == 0)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Listen for aktuelle medarbejdere er tom.\n");
+                            Console.WriteLine("Du sendes tilbage til menu:\n");
+                        }
                         break;
                       
                     case 7:
-                        //Historik
-                        employeeList.PrintEmployee();
+                        //Shows list of history of visitors
+                        visitorList.PrintVisitors();
+                        if (visitorList.visitorCount == 0)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Listen for besøgende historik er tom.\n");
+                            Console.WriteLine("Du sendes tilbage til menu:\n");
+                        }
                         break;
                     case 8:
-                        // Aktuelle
-                        employeeListInHouse.PrintEmployee();
+                        //Shows list of history of employees
+                        employeeList.PrintEmployee();
+
+                        if (employeeList.employeeCount == 0)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Listen Medarbejder Historik er tom.\n");
+                            Console.WriteLine("Du sendes tilbage til menu:\n");
+                        }
                         break;
                     case 9:
                         inWhile = false;
