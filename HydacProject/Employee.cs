@@ -19,6 +19,7 @@ namespace HydacProject
         public Employee() {
             personName = "";
             password = "";
+            moodSmiley = new MoodSmiley(true, "Happy");
         }  
 
         public Employee(string personName,MoodSmiley mood, string password)
@@ -53,10 +54,12 @@ namespace HydacProject
         }
         public void PrintEmployee()
         {
+            string temp;
             foreach (Employee employee in employees)
             {
+                temp = string.IsNullOrEmpty(employee.moodSmiley.smileyStatus) ? "Status not set" : employee.moodSmiley.smileyStatus;
                 Console.WriteLine($"MedarbejderNavn: {employee.personName}, " +
-                    $"Humørsmiley status: {employee.moodSmiley.smileyStatus}, " +
+                    $"Humørsmiley status: {temp}, " +
                     $"Ankomsttid: {employee.DateOfArrival} " +
                     $"Afgangstid: {employee.DateOfDeparture}");
 

@@ -25,7 +25,7 @@ namespace HydacProject
             bool inWhile = true;
             handler.ReadVisitorFromFile(visitorList, filePathVisitor);
             handler.ReadEmployeeFromFile(employeeList, filePathEmployee);
-
+            
 
 
 
@@ -217,7 +217,10 @@ namespace HydacProject
 
                                 handler.RemoveVisitorFromFile(filePathVisitorInHouse, visitorListInHouse.visitors[i]);
                                 nameFound = true;
-                                visitorList.RemoveVisitor(visitorListInHouse.visitors[i]);
+                                visitorList.AddVisitor(visitorListInHouse.visitors[i]);
+                                handler.SaveVisitorToFile(visitorList, filePathVisitor, visitorListInHouse.visitors[i]);
+                                visitorListInHouse.RemoveVisitor(visitorListInHouse.visitors[i]);
+                                
                                 Console.WriteLine(" ");
                                 Console.WriteLine("Du har nu fjernet {0}", nameForRemoval);
                                 Console.WriteLine(" ");
@@ -244,7 +247,9 @@ namespace HydacProject
                                 
                                 handler.RemoveEmployeeFromFile(filePathEmployeeInHouse, employeeListInHouse.employees[i]);
                                 nameFound = true;
-                                employeeList.RemoveEmployee(employeeListInHouse.employees[i]);
+                                employeeList.AddEmployee(employeeListInHouse.employees[i]);
+                                handler.SaveEmployeeToFile(employeeList, filePathEmployee, employeeListInHouse.employees[i]);
+                                employeeListInHouse.RemoveEmployee(employeeListInHouse.employees[i]);
                                 Console.WriteLine(" ");
                                 Console.WriteLine("Du har nu fjernet {0}", nameForRemoval);
                                 Console.WriteLine(" ");
@@ -283,7 +288,7 @@ namespace HydacProject
                         handler.ReadEmployeeFromFile(employeeListInHouse, filePathEmployeeInHouse);
                         employeeListInHouse.PrintEmployee();
                         Console.WriteLine("");
-                        if (employeeListInHouse.employeeCount == 0)
+                        if (employeeListInHouse.employees.Count == 0)
                         {
                             Console.Clear();
                             Console.WriteLine("Listen for aktuelle medarbejdere er tom.\n");
@@ -294,7 +299,7 @@ namespace HydacProject
                     case 7:
                         //Shows list of history of visitors
                         visitorList.PrintVisitors();
-                        if (visitorList.visitorCount == 0)
+                        if (visitorList.visitors.Count == 0)
                         {
                             Console.Clear();
                             Console.WriteLine("Listen for besøgende historik er tom.\n");
@@ -305,7 +310,7 @@ namespace HydacProject
                         //Shows list of history of employees
                         employeeList.PrintEmployee();
 
-                        if (employeeList.employeeCount == 0)
+                        if (employeeList.employees.Count == 0)
                         {
                             Console.Clear();
                             Console.WriteLine("Listen Medarbejder Historik er tom.\n");
@@ -374,7 +379,10 @@ namespace HydacProject
 
                             // Add visitor to visitor's vistor list
                             visitorListInHouse.AddVisitor(visitor);
-                            
+                            handler.SaveVisitorToFile(visitorListInHouse, filePathVisitorInHouse, visitor);
+                            Console.Clear();
+
+                            Console.WriteLine("Den besøgende blev tilføjet!\n");
                             break;
                         }
 
@@ -387,9 +395,14 @@ namespace HydacProject
                             {
                                 if (nameForRemoval == visitorListInHouse.visitors[i].personName)
                                 {
+                                    visitorList.AddVisitor(visitorListInHouse.visitors[i]);
+                                    handler.SaveVisitorToFile(visitorList, filePathVisitor, visitorListInHouse.visitors[i]);
+                                    
+                                    handler.RemoveVisitorFromFile(filePathVisitorInHouse, visitorListInHouse.visitors[i]);
                                     visitorListInHouse.RemoveVisitor(visitorListInHouse.visitors[i]);
+
                                     Console.WriteLine("Du har nu fjernet {0}", nameForRemoval);
-                                    handler.SaveVisitorToFile(visitorList,filePathVisitor, visitorListInHouse.visitors[i]);
+                                    
                                     nameFound = true;
                                 }
                             }

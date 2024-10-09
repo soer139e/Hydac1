@@ -163,7 +163,7 @@ namespace HydacProject
 
                     writer.WriteLine($"{employee.personName}," +
                         $"{employee.password}," +
-                        $"{employee.moodSmiley}," +
+                        $"{employee.moodSmiley.smileyStatus}," +
                         $"{employee.DateOfArrival}," +
                         $"{employee.DateOfDeparture}");
 

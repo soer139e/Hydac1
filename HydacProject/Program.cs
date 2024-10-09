@@ -13,7 +13,7 @@ namespace HydacProject
         static void Main(string[] args)
         {
 
-            if (File.Exists(filePathVisitor) != true)
+           if (File.Exists(filePathVisitor) != true)
             {
                 Console.WriteLine("Created Storage file for Vistors");
                 using FileStream fs = File.Create(filePathVisitor);
@@ -34,7 +34,7 @@ namespace HydacProject
                 Console.WriteLine("Created Storage file for VisitorInHouse");
                 using FileStream fs = File.Create(filePathVisitorInHouse);
             }
-
+          
             
             Menu menu = new Menu();
 

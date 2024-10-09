@@ -56,7 +56,7 @@ namespace HydacProject
 
         public void PrintVisitors()
         {
-            foreach (Visitor visitor in visitors)
+            foreach (Visitor visitor in visitors                                                                                                                                        )
             {
                 Console.WriteLine($"FirmaNavn: {visitor.companyName}, " +
                     $"KundeNavn: {visitor.personName}, " +
